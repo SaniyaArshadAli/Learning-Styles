@@ -1,3 +1,2 @@
 streamlit
-webbrowser
 plotly == 5.3.1
