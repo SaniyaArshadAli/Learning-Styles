@@ -2,7 +2,11 @@ import streamlit as st
 import plotly.graph_objects as go
 import webbrowser
 def vark_test():
-    st.title("Know Your Unique Learning Style with VARK Test")
+    # import streamlit as st
+
+# Center-align the title
+    st.markdown("<h1 style='text-align: center;'>Know Your Unique Learning Style with VARK Test</h1>", unsafe_allow_html=True)
+
 
     # Updated Questions and Options
     # Updated Questions and Options
@@ -72,8 +76,8 @@ def vark_test():
 
     # Display Questions and Get User Responses
     for i in range(len(questions)):
-        st.markdown(f"**{i + 1}. {questions[i]}**")
-        selected_option = st.radio(f"Select the most appropriate option for Question {i + 1}:", options[i])
+        st.markdown(f"<span style='font-size:20px'>**{i + 1}. {questions[i]}**</span>", unsafe_allow_html=True)
+        selected_option = st.radio(f"",options[i])
         responses.append(selected_option.split(".")[0].strip().lower())
 
     # Calculate Results
@@ -86,7 +90,7 @@ def vark_test():
 # Extract the top two styles
     top_two_styles = [style[0] for style in sorted_styles[:2]]
 
-    print(top_two_styles)
+    # print(top_two_styles)
     st.success(f"Your top two VARK learning styles are: **{top_two_styles[0]}** and **{top_two_styles[1]}**")
 
     # Display Common Pie Chart for All Learning Styles
@@ -101,7 +105,7 @@ def calculate_result(responses, scoring_chart):
     for i, response in enumerate(responses):
         question_number = str(i + 1)
         scores[scoring_chart[question_number][response]] += 1
-        print(scores)
+        # print(scores)
     return scores
 
 def plot_common_pie_chart(scores, total_responses):
@@ -109,7 +113,7 @@ def plot_common_pie_chart(scores, total_responses):
     values = [scores[style] / total_responses * 100 for style in labels]
 
     fig = go.Figure(data=[go.Pie(labels=labels, values=values, textinfo='percent+label')])
-    fig.update_layout(showlegend=True, title="Common Learning Style Scores")
+    fig.update_layout(showlegend=True, title="Visual Representation")
     st.plotly_chart(fig)
 
 if __name__ == "__main__":
